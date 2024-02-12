@@ -70,6 +70,7 @@ passport.deserializeUser(User.deserializeUser());
 app.use((req, res, next) => {
     res.setHeader(
         "Content-Security-Policy",
+        'frame-src https://console.dialogflow.com/',
         "default-src 'none'; font-src 'self' data:; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline';"
     );
     next();
