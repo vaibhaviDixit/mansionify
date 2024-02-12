@@ -1,0 +1,96 @@
+<% layout("/layout/boilerplate") %>
+
+<body>
+	<div class="wrapperofform">
+		<form  method="POST" action="/listings" id="wizard" class="mb-5"  >
+			<!-- SECTION 1 -->
+			<h2></h2>
+			<section>
+               
+
+				<div class="inner">
+					<div class="image-holder">
+						<img src="https://static.vecteezy.com/system/resources/previews/000/470/581/original/vector-real-estate-and-realtors-icons-set.jpg" style="margin-top:65px; margin-left:28px;" alt="">
+					</div>
+					<div class="form-content">
+						<div class="form-header">
+							<h3>Details</h3>
+						</div>
+						<p>Please fill with your detailsFor Documents Verification</p>
+						<div class="form-row">
+							<div class="form-holder">
+								<input type="text" placeholder="Title" name="listing[title]" class="form-control">
+							</div>
+							<div class="form-holder">
+								<input type="text" placeholder="Description" name="listing[description]" class="form-control">
+							</div>
+						</div>
+						
+						<div class="form-row">
+							<div class="form-holder">
+								<input type="number" placeholder="Price" name="listing[price]" class="form-control">
+							</div>
+							<div class="form-holder">
+								<input type="text" placeholder="Location" name="listing[location]" class="form-control">
+							</div>
+						</div>
+						
+						
+					</div>
+				</div>
+			</section>
+
+			<!-- SECTION 2 -->
+			<h2></h2>
+			<section>
+				<div class="inner">
+					<div class="image-holder">
+						<img src="https://lh4.googleusercontent.com/cRojJTXYWwG_J-1XgHK1RggHtY-Qy_kE9oCeUu6V2Wce97RwIM4RLiyocB4Y40v7JyUtHIwqzJV3rgaotAfQG1G1BCSGNH9r5a8FmNhV27hD7GVD3SvFjLWhg2hjM7bWgpYz_ZoeBjcbCFCazgEltnjxLRDROWv4WvivoJlfQiPKRjd4VuyPh_e8zA7lC_KlH77zDBiOWg" alt="">
+					</div>
+					<div class="form-content">
+						<div class="form-header">
+							<h3>7/12 info</h3>
+						</div>
+						<p>Please fill with additional info</p>
+						<div class="form-row">
+                            <div class="form-holder">
+                                <input type="text" placeholder="Area" name="listing[area]" class="form-control">
+							</div>
+							<div class="form-holder">
+                                <input type="text" placeholder="Jilha" name="listing[jilha]" class="form-control">
+							</div>
+						</div>
+                        <div class="form-row">
+                            <div class="form-holder w-100">
+                                <input type="text" placeholder="ULPIN no" name="listing[ulpin]" class="form-control">
+                            </div>
+                        </div>
+						<div class="form-row">
+							<div class="form-holder">
+								<input type="text" placeholder="Taluka" name="listing[taluka]" class="form-control">
+							</div>
+							<div class="form-holder">
+								<input type="text" placeholder="Village/Gaon" name="listing[village]" class="form-control">
+							</div>
+						</div>
+
+
+						</div>
+					</div>
+				</div>
+			</section>
+            <div class="container d-flex justify-content-center"><button class="btn btn-success offset-5 mx-auto text-center w-30">Submit</button></div>
+		</form>
+	</div>
+
+	<!-- JQUERY -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+	<!-- JQUERY STEP -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-steps/1.1.0/jquery.steps.min.js"></script>
+
+	<!-- Template created and distributed by Colorlib -->
+</body>
+
+</html>

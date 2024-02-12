@@ -1,0 +1,86 @@
+<nav class="my-2 mx-2 navbar navbar-expand-lg bg-transparent navbar-sticky fixed-top">
+    <div class="container px-0 py-2 navbar-light bg-primary shadow">
+        <a class="navbar-brand font-heading fw-bold ps-3" href="<?php echo home(); ?>">
+            Mansionify
+        </a>
+        <button class="navbar-toggler me-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarList"
+            aria-controls="navbarList" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-list fs-1 fw-bold"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarList">
+
+                <ul class="navbar-nav ms-auto me-md-3 mb-2 mb-lg-0 d-flex align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link font-heading" aria-current="page" href="/home">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link font-heading" aria-current="page" href="#features">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link font-heading" aria-current="page" href="/listings">Property</a>
+                    </li>
+                    <li class="nav-item">
+                        <form class="d-flex align-items-center searchForm">
+                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" style="height: 40px;">
+                            <button class="btn btn-sm btn-primary search" type="submit"><i class="bi bi-search"></i></button>
+                        </form>
+                    </li>
+                    
+
+                    
+                    <!-- for logged used -->
+                      <!--   <li class="nav-item dropdown">
+                            <a class="nav-link font-heading dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="bi bi-person-circle"></i>
+
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="<?php echo route('dashboard'); ?>">Dashboard</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" aria-current="page"
+                                        href="<?php echo route('logout'); ?>">Logout</a>
+                                </li>
+                            </ul>
+                        </li>
+ -->
+                    <% if(currUser){ %>
+                        <li class="nav-item">
+                            <a class="nav-link font-heading" aria-current="page" href="/listings/new">Add Property</a>
+                        </li>
+                    <li class="nav-item">
+                            <a class="nav-link font-heading btn btn-secondary rounded-pill" aria-current="page"
+                                href="/logout">Logout</a>
+                    </li>
+                    <% } %>
+                    <% if(!currUser){ %>
+                    <li class="nav-item">
+                        <a class="nav-link font-heading btn btn-secondary rounded-pill" aria-current="page"
+                            href="/login">Login</a>
+                </li>
+                <% } %>
+
+                </ul>
+
+        </div>
+    </div>
+</nav>
+<!-- chat section -->
+
+<div class="chatBox">
+    <i class="bi bi-x-circle-fill" onclick="closeChat()" id="closeChat"></i>
+    <iframe
+      allow="microphone;"
+      width="350"
+      height="430"
+      src="https://console.dialogflow.com/api-client/demo/embedded/484b0fc9-ee2d-4750-a4ee-4cbd52ef232b">
+  </iframe>
+    
+  <img src="" alt="">
+  </div>
+  
+  <button class="btn btn-sm d-flex align-items-center justify-content-center chatBtn blowanime" onclick="openChat()"><i class="bi bi-chat-left-dots-fill"></i></button>
+  
+  <!-- end chat section -->

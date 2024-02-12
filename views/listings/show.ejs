@@ -1,0 +1,137 @@
+<% layout("/layout/boilerplate") %>
+<style>
+    /* Custom CSS for transitions and layout */
+    .list-group-item {
+        cursor: pointer;
+    }
+    .content {
+        transition: all 0.3s ease;
+    }
+    .listing a{
+      font-size: 14px;
+    }
+    .listing .list-group-item.active {
+      color: var(--color-secondary-1);
+      background-color: var(--color-primary-1);
+      border-color: inherit;
+    }
+
+    .listingCard .card-title{
+      font-size: 18px;
+    }
+
+    .listingCard p{
+      font-size: 12px;
+    }
+
+    .listingCard .info{
+      font-size: 12px;
+    }
+    #my_map_add{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+      }
+
+</style>
+
+<div id="app">
+    <div id="my_map_add"></div>
+    <!-- main content here -->
+
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-2">
+                <div class="list-group listing" id="list-tab" role="tablist">
+                    <% allisting.forEach(listing => { %>
+                        <a class="list-group-item list-group-item-action" id="list-item<%= listing._id %>-list"
+                            data-bs-toggle="list" href="#<%= listing._id %>" role="tab"
+                            onclick="getMap('<%= listing.geometry.coordinates[0] %>', '<%= listing.geometry.coordinates[1] %>')">
+                            <%= listing.title %>
+                            <% if(listing.verified) { %>
+                                <i class="fa-solid fa-check text-success"></i>
+                            <% } else { %>
+                                <i class="fa-solid fa-xmark text-danger"></i>
+                            <% } %>
+                            
+                        </a>
+                    <% }) %>
+                </div>
+            </div>
+            
+            <div class="col-md-8">
+                <div class="tab-content" id="nav-tabContent">
+                    <% allisting.forEach(listing => { %>
+                        <div class="tab-pane fade" id="<%= listing._id %>" role="tabpanel">
+                            <div class="card listingCard" style="width: 23rem;">
+                                <img src="https://source.unsplash.com/1ddol8rgUH8"
+                                    class="card-img-top" alt="Card Image" height="150"
+                                    style="object-fit: cover;">
+                                <div class="card-body">
+                                    <h5 class="card-title"><%= listing.title %></h5>
+                                    <ul class="list-inline">
+                                        <li class="list-inline-item fw-bold">$<%= listing.price %> | </li>
+                                        <li class="list-inline-item"><%= listing.area %> sqft</li>
+                                    </ul>
+                                    <div class="info">
+                                        <span>Title: <%= listing.title %></span><br>
+                                        <span>Description: <%= listing.description %></span><br>
+                                        <span>Location: <%= listing.location %></span><br>
+                                        <span>Jilha: <%= listing.jilha %></span><br>
+                                        <span>ULPIN: <%= listing.ulpin %></span><br>
+                                        <span>Taluka: <%= listing.taluka %></span><br>
+                                    </div>
+                                    <p class="card-text"><%= listing.description %></p>
+                                    <% if(currUser && currUser._id.toString() === listing.owner.toString()) { %>
+                                        <div class="btns">
+                                            <form method="POST" action="/listings/<%= listing._id %>?_method=DELETE">
+                                                <button class="btn btn-dark offset-5">Delete</button>
+                                            </form>
+                                            
+                                        </div>
+                                    <% } %>
+                                    <% if(email === "mohitkhandelwal579@gmail.com"){ %>
+                                    <%currUser.email.toString()%>
+                                    <form action="/verify" method="post">
+                                        <input type="hidden" name="listid" value="<%= listing._id %>">
+                                        <button class="btn btn-success offset-5">verify</button>
+                                    </form>
+                                    <% } %>
+                                </div>
+                            </div>
+                        </div>
+                    <% }); %>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    function getMap(lng, lat) {
+        mapboxgl.accessToken = "pk.eyJ1IjoiZGVsdGEtc3R1ZHVlbnQiLCJhIjoiY2xvMDk0MTVhMTJ3ZDJrcGR5ZDFkaHl4ciJ9.Gj2VU1wvxc7rFVt5E4KLOQ";
+        const map = new mapboxgl.Map({
+            container: 'my_map_add',
+            style: 'mapbox://styles/mapbox/streets-v12', // style URL
+            center: [lng, lat], // starting position [lng, lat]
+            zoom: 9 // starting zoom
+        });
+    }
+    getMap(75.818982, 26.915458);
+</script>
+
+<script>
+    // Add event listener to each list item to toggle content
+    document.querySelectorAll('.list-group-item').forEach(item => {
+        item.addEventListener('click', function (event) {
+            const target = document.querySelector(this.getAttribute('href'));
+            document.querySelectorAll('.tab-pane').forEach(content => {
+                content.classList.remove('show');
+            });
+            target.classList.add('show');
+        });
+    });
+</script>
