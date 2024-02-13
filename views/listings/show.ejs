@@ -123,15 +123,4 @@
     getMap(75.818982, 26.915458);
 </script>
 
-<script>
-    // Add event listener to each list item to toggle content
-    document.querySelectorAll('.list-group-item').forEach(item => {
-        item.addEventListener('click', function (event) {
-            const target = document.querySelector(this.getAttribute('href'));
-            document.querySelectorAll('.tab-pane').forEach(content => {
-                content.classList.remove('show');
-            });
-            target.classList.add('show');
-        });
-    });
-</script>
+
